@@ -1,0 +1,27 @@
+<GuiXml>
+    <Controls>
+        <TopLevelControl name="FishBarWindow" tier="HIGH" hidden="true">
+            <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20" />
+
+            <OnInitialized>
+                FishBar.InitialiseGui(self)
+            </OnInitialized>
+
+            <Controls>
+                <Control name="$(parent)TimerBar">
+                    <Dimensions x="400" y="25" />
+                    <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP" />
+
+                    <Controls>
+                        <StatusBar name="$(parent)Status" inherits="ZO_DefaultStatusBarBG">
+                            <AnchorFill />
+                        </StatusBar>
+                        <Label name="$(parent)Label" font="ZoFontWinH3" color="INTERFACE_COLOR_TYPE_COLORS:INTERFACE_TEXT_COLOR_SELECTED">
+                            <Anchor point="CENTER" />
+                        </Label>
+                    </Controls>
+                </Control>
+            </Controls>
+        </TopLevelControl>
+    </Controls>
+</GuiXml>
