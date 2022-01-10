@@ -1,14 +1,23 @@
 <GuiXml>
     <Controls>
-        <TopLevelControl name="FishBarWindow" tier="HIGH" hidden="true">
+        <TopLevelControl name="FishBarWindow" tier="HIGH" hidden="true" clampedToScreen="true" mouseEnabled="true" movable="true">
+            <Dimensions x="400" y="25" />
             <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20" />
-
-            <OnInitialized>
-                FishBar.InitialiseGui(self)
-            </OnInitialized>
-
             <Controls>
+                <Button name="$(parent)LockButton" inherits="ZO_ButtonBehaviorClickSound">
+                    <Dimensions x="16" y="16" />
+                    <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetY="-20" />
+                    <Textures
+                        normal="esoui/art/miscellaneous/unlocked_up.dds"
+                        pressed="esoui/art/miscellaneous/unlocked_down.dds"
+                        mouseOver="esoui/art/miscellaneous/unlocked_over.dds" />
+                    <OnClicked>
+                        FishBar.LockClick()
+                    </OnClicked>
+                </Button>
+
                 <Control name="$(parent)TimerBar">
+
                     <Dimensions x="400" y="25" />
                     <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP" />
 
