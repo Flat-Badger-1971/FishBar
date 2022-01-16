@@ -2,7 +2,6 @@ std = "min"
 max_line_length = 160
 
 -- globals used within the Companion Frame addon
-globals = {"CF"}
 read_globals = {
     ["EVENT_MANAGER"] = {
         fields = {
@@ -13,13 +12,16 @@ read_globals = {
     ["SCENE_MANAGER"] = {
         fields = {
             GetCurrentScene = {read_only = true},
-            GetScene = {read_only = true}
+            GetScene = {read_only = true},
+            IsInUIMode = {read_only = true},
+            SetInUIMode = {read_only = true}
         }
     },
     ["WINDOW_MANAGER"] = {
         fields = {
             CreateTopLevelWindow = {read_only = true},
-            CreateControl = {read_only = true}
+            CreateControl = {read_only = true},
+            IsSecureRenderModeEnabled = {read_only = true}
         }
     },
     -- events
@@ -32,6 +34,7 @@ read_globals = {
     "EVENT_COMPANION_EXPERIENCE_GAIN",
     "EVENT_COMPANION_RAPPORT_UPDATE",
     "EVENT_INVENTORY_SINGLE_SLOT_UPDATE",
+    "EVENT_NON_COMBAT_BONUS_CHANGED",
     "EVENT_PLAYER_ACTIVATED",
     "EVENT_POWER_UPDATE",
     "EVENT_UNIT_CREATED",
@@ -120,6 +123,7 @@ read_globals = {
     "GetGameCameraInteractableActionInfo",
     "GetMaximumRapport",
     "GetMinimumRapport",
+    "GetNonCombatBonus",
     "GetNumExperiencePointsInCompanionLevel",
     "GetPendingCompanionDefId",
     "GetFrameTimeMilliseconds",
@@ -130,6 +134,7 @@ read_globals = {
     "IsCollectibleBlocked",
     "IsCollectibleUsable",
     "IsUnitGrouped",
+    "PlaySound",
     "ReloadUI",
     "UseCollectible",
     -- Zenimax objects
@@ -145,12 +150,15 @@ read_globals = {
             New = {read_only = true}
         }
     },
+    "ZO_PreHook",
     "ZO_PreHookHandler",
+    "ZO_PostHook",
     ["ZO_SavedVars"] = {
         fields = {
             NewAccountWide = {read_only = true}
         }
     },
+    "ZO_SceneManager_ToggleHUDUIBinding",
     "ZO_SmallGroupAnchorFrame",
     "ZO_TimerBar",
     "ZO_Tooltips_HideTextTooltip",

@@ -1,2 +1,13 @@
+[color=#ff9900][b]Version: 1.0.3 ---------------[/b][/color]
+Account for fishing duration bonus from the Craft tree
+
+[color=#ff9900][b]Version: 1.0.2 ---------------[/b][/color]
+Added German localisation - thanks to Baertram
+Corrected a localisation issue
+
+[color=#ff9900][b]Version: 1.0.1 ---------------[/b][/color]
+Added a sound when fishing is cancelled for reasons other than hooking a fish
+Added a sound when a fish is caught, if not using Votan's Fisherman
+
 [color=#ff9900][b]Version: 1.0.0 ---------------[/b][/color]
 Initial Release

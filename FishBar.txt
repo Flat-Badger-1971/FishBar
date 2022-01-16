@@ -1,8 +1,8 @@
 ## Title: Fish Bar
 ## Author: Flat Badger
 ## APIVersion: 101032
-## AddOnVersion: 100001
-## Version: 1.0.0
+## AddOnVersion: 100003
+## Version: 1.0.3
 ## SavedVariables: FishBarSavedVars
 ## DependsOn: LibSavedVars>=60005 LibAddonMenu-2.0>=32
 ## OptionalDependsOn: LibDebugLogger>=217
@@ -18,7 +18,7 @@
 # https://account.elderscrollsonline.com/add-on-terms
 
 languages/en.lua
-languages/${language}.lua
+languages/$(language).lua
 
 settings/settings.lua
 FishBar.lua

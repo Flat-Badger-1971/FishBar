@@ -6,7 +6,7 @@
             <Controls>
                 <Button name="$(parent)LockButton" inherits="ZO_ButtonBehaviorClickSound" hidden="true">
                     <Dimensions x="16" y="16" />
-                    <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetY="-20" offsetX="-95"/>
+                    <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="TOPLEFT" offsetY="-20" offsetX="0"/>
                     <Textures
                         normal="esoui/art/miscellaneous/unlocked_up.dds"
                         pressed="esoui/art/miscellaneous/unlocked_down.dds"
