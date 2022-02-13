@@ -17,7 +17,7 @@ local panel = {
     name = "Fish Bar",
     displayName = "Fish Bar",
     author = "Flat Badger",
-    version = "1.0.3",
+    version = "1.0.4",
     resetFunc = function()
         FB.Setup()
     end,
