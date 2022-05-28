@@ -10,6 +10,8 @@ local FRAME_MOVE_INTERVAL = 604800
 local isFishing = false
 local bonus = 1
 
+--FB.AchievementProgress = {}
+
 local function StartTimer(interval)
     local now = GetFrameTimeMilliseconds()
     local timerStartSeconds = now / 1000
@@ -85,6 +87,21 @@ local function HookInteraction()
     ZO_PostHook(RETICLE, "TryHandlingInteraction", CheckInteraction)
 end
 
+-- local function GetCompletedCount(achievementId)
+--     local criterionCount = GetAchievementNumCriteria(achievementId)
+--     local completedCount = 0
+
+--     for criterionNumber = 1, criterionCount do
+--         local _, completed = GetAchievementCriterion(criterionNumber, 1)
+
+--         if (completed) then
+--             completedCount = completedCount + 1
+--         end
+--     end
+
+--     return completedCount
+-- end
+
 local function OnPlayerActivated()
     zo_callLater(
         function()
@@ -92,6 +109,11 @@ local function OnPlayerActivated()
         end,
         1000
     )
+
+    -- record the current progress of all fishing achievements
+    -- for id, _ in ipairs(FB.Achievements) do
+    --     FB.AchievementProgress[id] = GetCompletedCount(id)
+    -- end
 end
 
 local function OnSlotUpdated(_, bagId, _, isNew)
@@ -156,6 +178,16 @@ local function OnBonusChanged(_, bonusType)
     end
 end
 
+local function OnAchievementUpdated(_, achievementId)
+    if (FB.Vars.PlayEmote) then
+        -- are we tracking this achievement?
+        if (FB.Achievements[achievementId]) then
+            -- we caught a special fishy
+            PlayEmoteByIndex(FB.Vars.Emote)
+        end
+    end
+end
+
 local function Initialise()
     if (_G.LibDebugLogger ~= nil) then
         FB.Logger = _G.LibDebugLogger(FB.Name)
@@ -179,6 +211,7 @@ local function Initialise()
     EVENT_MANAGER:RegisterForEvent(FB.Name, EVENT_ACTION_LAYER_POPPED, OnActionLayerChanged)
     EVENT_MANAGER:RegisterForEvent(FB.Name, EVENT_ACTION_LAYER_PUSHED, OnActionLayerChanged)
     EVENT_MANAGER:RegisterForEvent(FB.Name, EVENT_NON_COMBAT_BONUS_CHANGED, OnBonusChanged)
+    EVENT_MANAGER:RegisterForEvent(FB.Name, EVENT_ACHIEVEMENT_UPDATED, OnAchievementUpdated)
 
     FB.RegisterSettings()
 

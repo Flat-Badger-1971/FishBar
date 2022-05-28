@@ -1,8 +1,8 @@
 ## Title: Fish Bar
 ## Author: Flat Badger
-## APIVersion: 101032
-## AddOnVersion: 100004
-## Version: 1.0.4
+## APIVersion: 101033
+## AddOnVersion: 111
+## Version: 1.1.1
 ## SavedVariables: FishBarSavedVars
 ## DependsOn: LibSavedVars>=60005 LibAddonMenu-2.0>=32
 ## OptionalDependsOn: LibDebugLogger>=217
@@ -20,7 +20,11 @@
 languages/en.lua
 languages/$(language).lua
 
-settings/settings.lua
-FishBar.lua
+data/defaults.lua
+data/achievements.lua
+data/emotes.lua
 
+settings/settings.lua
+
+FishBar.lua
 FishBar.xml

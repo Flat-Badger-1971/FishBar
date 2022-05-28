@@ -1,14 +1,13 @@
-_G.FishBar = {
-    Name = "FishBar",
-    Defaults = {
-        Position = nil,
-        BarColour = {r = 50 / 255, g = 115 / 255, b = 168 / 255, a = 1},
-        ShowFishing = true,
-        LabelColour = {r = 1, g = 1, b = 1, a = 1}
-    }
-}
-
 local FB = _G.FishBar
+local emoteList = {}
+
+do
+    for _, emoteName in pairs(FB.Emotes) do
+        table.insert(emoteList, emoteName)
+    end
+
+    table.sort(emoteList, function(a, b) return a < b end);
+end
 
 FB.LAM = _G.LibAddonMenu2
 
@@ -17,7 +16,7 @@ local panel = {
     name = "Fish Bar",
     displayName = "Fish Bar",
     author = "Flat Badger",
-    version = "1.0.4",
+    version = "1.1.1",
     resetFunc = function()
         FB.Setup()
     end,
@@ -72,10 +71,43 @@ local options = {
         end,
         width = "full",
         default = FB.Defaults.BarColour
+    },
+    [5] = {
+        type = "checkbox",
+        name = GetString(_G.FISHBAR_EMOTE),
+        tooltip = GetString(_G.FISHBAR_EMOTE_DESC),
+        getFunc = function()
+            return FB.Vars.PlayEmote
+        end,
+        setFunc = function(value)
+            FB.Vars.PlayEmote = value
+            CALLBACK_MANAGER:FireCallbacks("LAM-RefreshPanel", FB.OptionsPanel)
+        end,
+        width = "full",
+        default = FB.Defaults.PlayEmote
+    },
+    [6] = {
+        type = "dropdown",
+        name = GetString(_G.SI_CHAT_CHANNEL_NAME_EMOTE),
+        choices = emoteList,
+        getFunc = function()
+            return FB.Emotes[FB.Vars.Emote]
+        end,
+        setFunc = function(value)
+            for idx, name in pairs(FB.Emotes) do
+                if (name == value) then
+                    FB.Vars.Emote = idx
+                end
+            end
+        end,
+        disabled = function()
+            return FB.Vars.PlayEmote == false
+        end,
+        width = "full"
     }
 }
 
 function FB.RegisterSettings()
-    FB.LAM:RegisterAddonPanel("FishBarOptionsPanel", panel)
+    FB.OptionsPanel = FB.LAM:RegisterAddonPanel("FishBarOptionsPanel", panel)
     FB.LAM:RegisterOptionControls("FishBarOptionsPanel", options)
 end
