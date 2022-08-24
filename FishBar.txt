@@ -1,8 +1,8 @@
 ## Title: Fish Bar
 ## Author: Flat Badger
-## APIVersion: 101034
-## AddOnVersion: 120
-## Version: 1.2.0
+## APIVersion: 101035
+## AddOnVersion: 130
+## Version: 1.3.0
 ## SavedVariables: FishBarSavedVars
 ## DependsOn: LibSavedVars>=60005 LibAddonMenu-2.0>=32
 ## OptionalDependsOn: LibDebugLogger>=217
