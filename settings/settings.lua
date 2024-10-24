@@ -16,7 +16,7 @@ local panel = {
     name = "Fish Bar",
     displayName = "Fish Bar",
     author = "Flat Badger",
-    version = "1.8.0",
+    version = _G.LibFBCommon.GetAddonVersion(FB.Name),
     resetFunc = function()
         FB.Setup()
     end,
