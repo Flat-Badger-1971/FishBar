@@ -12,20 +12,17 @@ end
 FB.LAM = _G.LibAddonMenu2
 
 local panel = {
-    type = "panel",
+    author = "Flat Badger",
     name = "Fish Bar",
     displayName = "Fish Bar",
-    author = "Flat Badger",
+    registerForDefaults = true,
     resetFunc = function()
         FB.Setup()
     end,
-    registerForDefaults = true,
-    slashCommand = "/fb"
+    slashCommand = "/fb",
+    type = "panel",
+    version = FB.LC.GetAddonVersion(FB.Name)
 }
-
-if (_G.LibFBCommon) then
-    panel.version = _G.LibFBCommon.GetAddonVersion(FB.Name)
-end
 
 local options = {
     [1] = {
