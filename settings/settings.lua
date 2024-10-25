@@ -16,13 +16,16 @@ local panel = {
     name = "Fish Bar",
     displayName = "Fish Bar",
     author = "Flat Badger",
-    version = _G.LibFBCommon.GetAddonVersion(FB.Name),
     resetFunc = function()
         FB.Setup()
     end,
     registerForDefaults = true,
     slashCommand = "/fb"
 }
+
+if (_G.LibFBCommon) then
+    panel.version = _G.LibFBCommon.GetAddonVersion(FB.Name)
+end
 
 local options = {
     [1] = {

@@ -4,8 +4,8 @@
 ## AddOnVersion: 1800
 ## Version: 1.8.0
 ## SavedVariables: FishBarSavedVars
-## DependsOn: LibSavedVars>=60005 LibAddonMenu-2.0>=35 LibFBCommon
-## OptionalDependsOn: LibDebugLogger>=217
+## DependsOn: LibSavedVars>=60005 LibAddonMenu-2.0>=35
+## OptionalDependsOn: LibFBCommon LibDebugLogger>=217
 
 # DISCLAIMER:
 #
