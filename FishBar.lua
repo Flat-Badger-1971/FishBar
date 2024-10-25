@@ -206,12 +206,12 @@ local function Initialise()
 
     HookInteraction()
 
-    EVENT_MANAGER:RegisterForEvent(FB.Name, EVENT_PLAYER_ACTIVATED, OnPlayerActivated)
-    EVENT_MANAGER:RegisterForEvent(FB.Name, EVENT_INVENTORY_SINGLE_SLOT_UPDATE, OnSlotUpdated)
-    EVENT_MANAGER:RegisterForEvent(FB.Name, EVENT_ACTION_LAYER_POPPED, OnActionLayerChanged)
-    EVENT_MANAGER:RegisterForEvent(FB.Name, EVENT_ACTION_LAYER_PUSHED, OnActionLayerChanged)
-    EVENT_MANAGER:RegisterForEvent(FB.Name, EVENT_NON_COMBAT_BONUS_CHANGED, OnBonusChanged)
-    EVENT_MANAGER:RegisterForEvent(FB.Name, EVENT_ACHIEVEMENT_UPDATED, OnAchievementUpdated)
+    EVENT_MANAGER:RegisterForEvent(FB.Name, _G.EVENT_PLAYER_ACTIVATED, OnPlayerActivated)
+    EVENT_MANAGER:RegisterForEvent(FB.Name, _G.EVENT_INVENTORY_SINGLE_SLOT_UPDATE, OnSlotUpdated)
+    EVENT_MANAGER:RegisterForEvent(FB.Name, _G.EVENT_ACTION_LAYER_POPPED, OnActionLayerChanged)
+    EVENT_MANAGER:RegisterForEvent(FB.Name, _G.EVENT_ACTION_LAYER_PUSHED, OnActionLayerChanged)
+    EVENT_MANAGER:RegisterForEvent(FB.Name, _G.EVENT_NON_COMBAT_BONUS_CHANGED, OnBonusChanged)
+    EVENT_MANAGER:RegisterForEvent(FB.Name, _G.EVENT_ACHIEVEMENT_UPDATED, OnAchievementUpdated)
 
     FB.RegisterSettings()
 
@@ -282,9 +282,9 @@ function FB.OnAddonLoaded(_, addonName)
         return
     end
 
-    EVENT_MANAGER:UnregisterForEvent(FB.Name, EVENT_ADD_ON_LOADED)
+    EVENT_MANAGER:UnregisterForEvent(FB.Name, _G.EVENT_ADD_ON_LOADED)
 
     Initialise()
 end
 
-EVENT_MANAGER:RegisterForEvent(FB.Name, EVENT_ADD_ON_LOADED, FB.OnAddonLoaded)
+EVENT_MANAGER:RegisterForEvent(FB.Name, _G.EVENT_ADD_ON_LOADED, FB.OnAddonLoaded)
