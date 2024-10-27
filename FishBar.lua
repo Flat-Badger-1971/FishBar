@@ -219,6 +219,30 @@ local function Initialise()
     FISHING_INTERVAL = DEFAULT_FISHING_INTERVAL * bonus
 
     InitialiseGui(_G.FishBarWindow)
+
+    local libWarning = FB.Vars.LibWarning
+
+    if (not _G.LibFBCommon and not libWarning) then
+        ZO_Dialogs_RegisterCustomDialog(
+            "FishBarLibWarning",
+            {
+                title = {text = "|c4f34ebFish Bar|r"},
+                mainText = {
+                    text = GetString(_G.FISHBAR_LFC)
+                },
+                buttons = {
+                    {
+                        text = ZO_CachedStrFormat("<<C:1>>", GetString(_G.SI_DIALOG_CONFIRM)),
+                        callback = function()
+                            FB.Vars.LibWarning = true
+                        end
+                    }
+                }
+            }
+        )
+
+        ZO_Dialogs_ShowDialog("FishBarLibWarning")
+    end
 end
 
 function FB.Setup()
