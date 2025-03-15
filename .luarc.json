@@ -1,12 +1,31 @@
 {
-    "diagnostics.disable": [
-        "assign-type-mismatch",
-        "deprecated",
-        "lowercase-global",
-        "param-type-mismatch",
-        "redundant-return-value",
-        "return-type-mismatch",
-        "undefined-field",
-        "undefined-global"
+    "diagnostics": {
+        "disable": [
+            "param-type-mismatch"
+        ],
+        "libraryFiles": "Disable",
+        "globals": [
+            "GuiRoot",
+            "TOP",
+            "BOTTOM",
+            "LEFT",
+            "RIGHT",
+            "TOPLEFT",
+            "TOPRIGHT",
+            "BOTTOMLEFT",
+            "BOTTOMRIGHT",
+            "CENTER",
+            "TEXT_ALIGN_CENTER",
+            "TEXT_ALIGN_LEFT",
+            "CT_LABEL",
+            "CT_BACKDROP",
+            "CT_TEXTURE",
+            "CT_CONTROL",
+            "DT_HIGH",
+            "DT_MEDIUM"
+        ]
+    },
+    "workspace.library": [
+        "./esoapi/esoapi.lua"
     ]
 }

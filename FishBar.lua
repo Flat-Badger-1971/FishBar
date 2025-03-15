@@ -1,5 +1,5 @@
 --[[ Acknowledgement: Several portions of this code are based on Votan's Fisherman ]]
-local FB = _G.FishBar
+local FB = FishBar
 local fishingInteractableName = nil
 local interactionReady = false
 local lastAction = nil
@@ -9,8 +9,6 @@ local DEFAULT_FISHING_INTERVAL = 30
 local FRAME_MOVE_INTERVAL = 604800
 local isFishing = false
 local bonus = 1
-
---FB.AchievementProgress = {}
 
 local function StartTimer(interval)
     local now = GetFrameTimeMilliseconds()
@@ -40,7 +38,7 @@ local function NewInteraction()
 
         lastAction = action
 
-        if (additionalInfo == _G.ADDITIONAL_INTERACT_INFO_FISHING_NODE) then
+        if (additionalInfo == ADDITIONAL_INTERACT_INFO_FISHING_NODE) then
             fishingInteractableName = interactableName
         else
             local fishing = interactableName == fishingInteractableName
@@ -74,7 +72,7 @@ local function CheckInteraction(interactionPossible, _)
         if (action ~= FB.ReelIn) then
             if (isFishing) then
                 StopTimer()
-                PlaySound(_G.SOUNDS.GENERAL_ALERT_ERROR)
+                PlaySound(SOUNDS.GENERAL_ALERT_ERROR)
                 isFishing = false
             end
         end
@@ -87,21 +85,6 @@ local function HookInteraction()
     ZO_PostHook(RETICLE, "TryHandlingInteraction", CheckInteraction)
 end
 
--- local function GetCompletedCount(achievementId)
---     local criterionCount = GetAchievementNumCriteria(achievementId)
---     local completedCount = 0
-
---     for criterionNumber = 1, criterionCount do
---         local _, completed = GetAchievementCriterion(criterionNumber, 1)
-
---         if (completed) then
---             completedCount = completedCount + 1
---         end
---     end
-
---     return completedCount
--- end
-
 local function OnPlayerActivated()
     zo_callLater(
         function()
@@ -109,11 +92,6 @@ local function OnPlayerActivated()
         end,
         1000
     )
-
-    -- record the current progress of all fishing achievements
-    -- for id, _ in ipairs(FB.Achievements) do
-    --     FB.AchievementProgress[id] = GetCompletedCount(id)
-    -- end
 end
 
 local function OnSlotUpdated(_, bagId, _, isNew)
@@ -121,7 +99,7 @@ local function OnSlotUpdated(_, bagId, _, isNew)
         return
     end
 
-    if (bagId ~= _G.BAG_BACKPACK and bagId ~= _G.BAG_VIRTUAL) then
+    if (bagId ~= BAG_BACKPACK and bagId ~= BAG_VIRTUAL) then
         return
     end
 
@@ -133,8 +111,8 @@ local function OnSlotUpdated(_, bagId, _, isNew)
             StopTimer()
 
             -- play a sound if Votan's Fisherman is not installed
-            if (not _G.VOTANS_FISHERMAN) then
-                PlaySound(_G.SOUNDS.QUEST_ABANDONED)
+            if (not VOTANS_FISHERMAN) then
+                PlaySound(SOUNDS.QUEST_ABANDONED)
             end
         end
     end
@@ -157,11 +135,11 @@ local function InitialiseGui(gui)
     -- timer
     local timerBar = gui:GetNamedChild("TimerBar")
     FB.timer = ZO_TimerBar:New(timerBar)
-    FB.timer:SetDirection(_G.TIMER_BAR_COUNTS_DOWN)
+    FB.timer:SetDirection(TIMER_BAR_COUNTS_DOWN)
 
     -- set the 'Fishing...' label
     FB.Label = timerBar:GetNamedChild("Label")
-    FB.Label:SetText(GetString(_G.SI_GUILDACTIVITYATTRIBUTEVALUE9) .. "...")
+    FB.Label:SetText(GetString(SI_GUILDACTIVITYATTRIBUTEVALUE9) .. "...")
 
     -- bar
     FB.Bar = timerBar:GetNamedChild("Status")
@@ -171,7 +149,7 @@ local function InitialiseGui(gui)
 end
 
 local function OnBonusChanged(_, bonusType)
-    if (bonusType == _G.NON_COMBAT_BONUS_FISHING_TIME_REDUCTION_PERCENT) then
+    if (bonusType == NON_COMBAT_BONUS_FISHING_TIME_REDUCTION_PERCENT) then
         bonus = 1 - (GetNonCombatBonus(bonusType) / 100)
         --FB.Log("Bonus: " .. (bonus or "nil"), "warn")
         FISHING_INTERVAL = DEFAULT_FISHING_INTERVAL * bonus
@@ -189,20 +167,20 @@ local function OnAchievementUpdated(_, achievementId)
 end
 
 local function Initialise()
-    if (_G.LibDebugLogger ~= nil) then
-        FB.Logger = _G.LibDebugLogger(FB.Name)
+    if (LibDebugLogger ~= nil) then
+        FB.Logger = LibDebugLogger(FB.Name)
     end
 
     -- saved variables
     FB.Vars =
-        _G.LibSavedVars:NewAccountWide("FishBarSavedVars", "Account", FB.Defaults):AddCharacterSettingsToggle(
-        "FishBarSavedVars",
-        "Characters"
-    )
+        LibSavedVars:NewAccountWide("FishBarSavedVars", "Account", FB.Defaults):AddCharacterSettingsToggle(
+            "FishBarSavedVars",
+            "Characters"
+        )
 
     -- get current language
     FB.Language = GetCVar("language.2")
-    FB.ReelIn = GetString(_G.SI_GAMECAMERAACTIONTYPE17)
+    FB.ReelIn = GetString(SI_GAMECAMERAACTIONTYPE17)
 
     HookInteraction()
 
@@ -215,10 +193,10 @@ local function Initialise()
 
     FB.RegisterSettings()
 
-    bonus = 1 - (GetNonCombatBonus(_G.NON_COMBAT_BONUS_FISHING_TIME_REDUCTION_PERCENT) / 100)
+    bonus = 1 - (GetNonCombatBonus(NON_COMBAT_BONUS_FISHING_TIME_REDUCTION_PERCENT) / 100)
     FISHING_INTERVAL = DEFAULT_FISHING_INTERVAL * bonus
 
-    InitialiseGui(_G.FishBarWindow)
+    InitialiseGui(FishBarWindow)
 end
 
 function FB.Setup()
