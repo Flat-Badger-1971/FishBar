@@ -1,4 +1,4 @@
-local FB = _G.FishBar
+local FB = FishBar
 local emoteList = {}
 
 do
@@ -9,13 +9,14 @@ do
     table.sort(emoteList, function(a, b) return a < b end);
 end
 
-FB.LAM = _G.LibAddonMenu2
+FB.LAM = LibAddonMenu2
 
 local panel = {
     author = "Flat Badger",
     name = "Fish Bar",
     displayName = "Fish Bar",
-    registerForDefaults = true,
+    author = "Flat Badger",
+    version = FB.LC.GetAddonVersion(FB.Name),
     resetFunc = function()
         FB.Setup()
     end,
@@ -27,7 +28,7 @@ local panel = {
 local options = {
     [1] = {
         type = "button",
-        name = GetString(_G.FISHBAR_MOVEFRAME),
+        name = GetString(FISHBAR_MOVEFRAME),
         func = function()
             FB.EnableMoving()
         end,
@@ -35,7 +36,7 @@ local options = {
     },
     [2] = {
         type = "checkbox",
-        name = GetString(_G.FISHBAR_SHOW_LABEL),
+        name = GetString(FISHBAR_SHOW_LABEL),
         getFunc = function()
             return FB.Vars.ShowFishing
         end,
@@ -48,12 +49,12 @@ local options = {
     },
     [3] = {
         type = "colorpicker",
-        name = GetString(_G.FISHBAR_LABEL_COLOUR),
+        name = GetString(FISHBAR_LABEL_COLOUR),
         getFunc = function()
             return FB.Vars.LabelColour.r, FB.Vars.LabelColour.g, FB.Vars.LabelColour.b, FB.Vars.LabelColour.a
         end,
         setFunc = function(r, g, b, a)
-            FB.Vars.LabelColour = {r = r, g = g, b = b, a = a}
+            FB.Vars.LabelColour = { r = r, g = g, b = b, a = a }
             FB.Label:SetColor(r, g, b, a)
         end,
         width = "full",
@@ -61,12 +62,12 @@ local options = {
     },
     [4] = {
         type = "colorpicker",
-        name = GetString(_G.FISHBAR_BAR_COLOUR),
+        name = GetString(FISHBAR_BAR_COLOUR),
         getFunc = function()
             return FB.Vars.BarColour.r, FB.Vars.BarColour.g, FB.Vars.BarColour.b, FB.Vars.BarColour.a
         end,
         setFunc = function(r, g, b, a)
-            FB.Vars.BarColour = {r = r, g = g, b = b, a = a}
+            FB.Vars.BarColour = { r = r, g = g, b = b, a = a }
             FB.Bar:SetColor(r, g, b, a)
         end,
         width = "full",
@@ -74,8 +75,8 @@ local options = {
     },
     [5] = {
         type = "checkbox",
-        name = GetString(_G.FISHBAR_EMOTE),
-        tooltip = GetString(_G.FISHBAR_EMOTE_DESC),
+        name = GetString(FISHBAR_EMOTE),
+        tooltip = GetString(FISHBAR_EMOTE_DESC),
         getFunc = function()
             return FB.Vars.PlayEmote
         end,
@@ -88,7 +89,7 @@ local options = {
     },
     [6] = {
         type = "dropdown",
-        name = GetString(_G.SI_CHAT_CHANNEL_NAME_EMOTE),
+        name = GetString(SI_CHAT_CHANNEL_NAME_EMOTE),
         choices = emoteList,
         getFunc = function()
             return FB.Emotes[FB.Vars.Emote]

@@ -1,5 +1,5 @@
 -- Fishing achievement ids
-_G.FishBar.AchievementIds = {
+local ids = {
     "471,475",
     "477,481",
     "483,487",
@@ -19,7 +19,11 @@ _G.FishBar.AchievementIds = {
     2655,
     2861,
     2981,
-    3144
+    3144,
+    3269,
+    3500,
+    3636,
+    3948
 }
 
-_G.FishBar.Achievements = _G.LibFBCommon.BuildList(_G.FishBar.AchievementIds)
+FishBar.Achievements = FishBar.LC.BuildList(ids)
