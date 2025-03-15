@@ -12,7 +12,6 @@ end
 FB.LAM = LibAddonMenu2
 
 local panel = {
-    author = "Flat Badger",
     name = "Fish Bar",
     displayName = "Fish Bar",
     author = "Flat Badger",
@@ -21,8 +20,7 @@ local panel = {
         FB.Setup()
     end,
     slashCommand = "/fb",
-    type = "panel",
-    version = FB.LC.GetAddonVersion(FB.Name)
+    type = "panel"
 }
 
 local options = {

@@ -1,4 +1,4 @@
-local s = GetEmoteSlashNameByIndex
+local SlashName = GetEmoteSlashNameByIndex
 
 FishBar.Emotes = {
     [4] = SlashName(4),     -- /horn
